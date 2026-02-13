@@ -1,0 +1,57 @@
+x0=-80.000000
+ Newton: fail
+ Steff: it=5 root=-62.907613
+x0=-70.000000
+ Newton: it=3 root=-69.045914
+ Steff: it=11 root=-18.602967
+x0=-55.000000
+ Newton: it=4 root=-56.464419
+ Steff: fail
+x0=-36.000000
+ Newton: it=4 root=-37.823771
+ Steff: it=5 root=-12.913315
+x0=-20.000000
+ Newton: it=4 root=-18.602967
+ Steff: it=4 root=-25.316548
+x0=-5.000000
+ Newton: it=4 root=-5.555571
+ Steff: it=5 root=-5.555571
+x0=-3.140000
+ Newton: it=6 root=-1.278007
+ Steff: it=6 root=-1.278007
+x0=-1.000000
+ Newton: it=4 root=-1.083224
+ Steff: it=4 root=-1.083224
+x0=0.000000
+ Newton: it=7 root=-1.083224
+ Steff: it=7 root=-1.083224
+x0=1.195800
+ Newton: it=6 root=-1.083224
+ Steff: it=6 root=-1.278007
+x0=3.140000
+ Newton: it=6 root=-1.083224
+ Steff: it=5 root=11.636464
+x0=5.000000
+ Newton: it=5 root=11.636464
+ Steff: it=3 root=7.728136
+x0=10.000000
+ Newton: it=4 root=19.403227
+ Steff: it=4 root=7.728136
+x0=22.000000
+ Newton: it=5 root=31.754703
+ Steff: it=4 root=19.403227
+x0=33.000000
+ Newton: it=4 root=31.754703
+ Steff: it=6 root=-37.823771
+x0=44.000000
+ Newton: it=3 root=44.225986
+ Steff: it=3 root=44.225986
+x0=51.000000
+ Newton: it=3 root=50.050003
+ Steff: it=23 root=-62.907613
+x0=60.000000
+ Newton: it=4 root=75.254623
+ Steff: it=4 root=44.225986
+x0=80.000000
+ Newton: fail
+ Steff: fail

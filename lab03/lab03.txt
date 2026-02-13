@@ -1,0 +1,14 @@
+Jacobi: n=10, it=23, norm1=0.000007, norm2=10.000007
+Gauss: n=10, it=7, norm1=0.000002, norm2=9.999999
+Jacobi: n=20, it=35, norm1=0.000009, norm2=20.000009
+Gauss: n=20, it=8, norm1=0.000003, norm2=20.000002
+Jacobi: n=80, it=97, norm1=0.000009, norm2=80.000009
+Gauss: n=80, it=10, norm1=0.000002, norm2=79.999999
+Jacobi: n=200, it=313, norm1=0.000010, norm2=200.000010
+Gauss: n=200, it=11, norm1=0.000003, norm2=200.000001
+Jacobi: n=500, no convergence
+Gauss: n=500, it=12, norm1=0.000003, norm2=500.000000
+Jacobi: n=2000, no convergence
+Gauss: n=2000, it=13, norm1=0.000006, norm2=1999.999999
+Jacobi: n=6000, no convergence
+Gauss: n=6000, it=14, norm1=0.000006, norm2=6000.000000

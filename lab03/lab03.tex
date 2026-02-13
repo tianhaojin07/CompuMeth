@@ -1,0 +1,233 @@
+%\documentclass[12pt]{article}
+%\usepackage{ctex} % 中文支持
+%\usepackage{titling} % 标题格式定制
+%\usepackage{lipsum} % 示例文本
+%\usepackage{titlesec} % 标题格式定制
+%\usepackage{graphicx}
+%
+%% 设置标题格式
+%\titleformat{\section}{\centering\Large\bfseries}{\thesection}{1em}{}
+%\titleformat{\subsection}{\centering\large\bfseries}{\thesubsection}{1em}{}
+%\titleformat{\subsubsection}{\centering\normalsize\bfseries}{\thesubsubsection}{1em}{}
+%
+%% 调整标题位置
+%\setlength{\droptitle}{-4cm}
+
+\documentclass[UTF8]{ctexart}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{multirow,arydshln}
+
+\geometry{left=2.18cm,right=2.18cm,top=1.54cm,bottom=2.0cm}
+\pagestyle{empty}
+\title{\bf 2025秋计算方法--实验报告 \#3--总分20分=16 + 4(小结)}
+\author{姓名：金天昊 \quad 学号：PB24000144 }
+\date{\today}
+
+\begin{document}
+
+%\title{\huge{\textbf{2023秋计算方法-实验报告\#1}}}
+%\author{姓名：\underline{   }\hspace{1cm}学号：PB2151xxxx}
+\maketitle
+
+运行环境：Windows 11，VSCode，MSVC 19.42.34436
+%win11，vscode，py3
+
+\section{实验内容与要求}
+\bf
+{线性方程组的迭代法}
+
+
+%问题提出：%理论上的分析表明，求解病态的线性方程组是有困难的。实际情况是否如此，具体计算过程中究竟会出现怎样的现象呢？
+
+{\color{blue} 实验内容}:考虑线性方程组~$\color{blue}{(H + 2 I )x = b}$,其中~$I$~为单位阵,~$H$~为n阶~{\color{blue}Hilbert矩阵},%i.e.,
+$$\color{blue}{ H=(h_{ij})_{n\times n}, \qquad  h_{ij}=\frac{1}{i+j-1},\quad i,j=1,2,\cdots,n  }$$
+%这是一个著名的病态问题。
+通过先给{\color{blue}定解}, 比如{\color{red}\bf 取~$x$~的各个分量为1}, 再计算出右端向量~$\color{blue}b$~的办法给出一个精确解已知的问题.
+
+{\color{blue} 实验要求}：
+
+(1) 分别编写~Jacobi~迭代法,~Gauss-Seidel~迭代法的一般程序({\color{red}不得使用符号运算})；
+%以及最速下降法(SD)
+
+(2) 所有迭代的{\color{blue}初始向量均取为0向量, 停止条件为~$\color{red}\|x^{(k)}  - x^{*} \|_1 < \epsilon \doteq  10^{-5}$~或迭代步数超过50万(可视为迭代失败)},
+这里~$\color{blue}x^{*}=(1,1,\cdots,1)^T$~为精确解, ~$\color{blue} x^{(k)}$~为数值解;
+
+(3) 用以上二种迭代去求解前述的方程组,
+分别取阶数~{\color{red} n=10,20,80,200,500,2000,6000};
+
+(4) 列表给出{\bf 各自}{\color{blue}数值解}的计算误差({\bf\color{red}1-范数下}), {\color{blue}迭代步数}
+以及{\color{blue}数值解}的范数~$\color{red}\|x^{(k)} \|_1$~(保留6位小数,求解失败时,无需给出数值解范数);
+    报告数值实验过程中可能出现的计算问题;
+%以及本次编程实验的经验和教训.
+%再分别取矩阵阶数n=10,50,200,500，重复(2)；仍然用上述的两种计算方法去求解，请分别{\color{blue}报告各自的数值结果}({\bf\color{red}数值解和1-范数下的计算误差})以及{\color{blue}计算过程中可能出现的问题}；
+
+%(4) 对LU 分解，请分别报告n=6和10时的LU 分解的分解结果，即{\color{blue}给出对应的三角矩阵L和U}.
+%
+(5) {\bf 分析并比较以上二种迭代方法, 你能得出什么结论或经验教训．}
+\clearpage
+
+
+\section{数值结果}
+
+{\bf --数值解误差及迭代步数~(注: $\color{blue}x^{*}=(1,1,\cdots,1)^T$~为精确解)}
+%\begin{itemize}
+%\item {\color{blue}n=6}:
+%\begin{table}[htb]
+%\begin{center}
+%\begin{tabular}{|c|c|c|} % 2列，每列居中对齐
+%\hline
+% 精确解~\color{blue}$x$ &   如：(1,1,1,1,1,1)  & \bf 绝对误差 ($\color{blue}\|x_{num} - x\|_1$)\\
+%\hline
+% LU~数值解      &   &\\
+%%\hline
+%% LU分解法在1-范数下的计算误差     &\color{blue}  \\
+%\hline
+% Cholesky~数值解      &\color{blue}  & \\
+%%\hline
+%% Cholesky分解法在1-范数下的计算误差      &   \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\caption{n=6}
+%\end{table}
+
+%\item {\color{blue}n=10}:
+%\begin{table}[htb]
+%\begin{center}
+%\begin{tabular}{|c|c|c|} % 2列，每列居中对齐
+%\hline
+% 精确解~\color{blue}$x$ & 如：(1,...,1) & \bf 绝对误差 ($\color{blue}\|x_{num} - x\|_1$) \\
+%\hline
+% LU数值解      &   &   \\
+%\hline
+% Cholesky数值解      &  & \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\caption{n=10}
+%\end{table}
+
+%\item {\color{blue}n=19}: 10,20,80,200,500,2000,6000
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} % 2列，每列居中对齐
+\hline
+	\color{blue}         n              &  \bf 迭代法 & \quad \bf 迭代步数 $\quad \;$ &  绝对误差~\color{blue}$\|x^{(k)} -x^{*} \|_1  < \epsilon$  & \;~~~~$\|x^{(k)}\|_1$ ~~~~~~\; \\ \hline
+   \multirow{3}{*}{ } {n=10}    & \color{blue} Jacobi  & 23 & 0.000007 & 10.000007 \\  \hdashline %\hline
+					& \color{blue}  Gauss-Seidel & 7 & 0.000002 & 9.999999 \\ \hline
+				   %   & \color{blue}  SD &  & \\ \hline \hline
+	\multirow{3}{*}{} {n=20}      & \color{blue} Jacobi  & 35 & 0.000009 & 20.000009 \\ \hdashline  %\hline
+					& \color{blue}  Gauss-Seidel & 8 & 0.000003 & 20.000002 \\ \hline
+				%        & \color{blue}  SD &  & \\ \hline \hline
+	 \multirow{3}{*}{}  {n=80}      & \color{blue} Jacobi  & 97 & 0.000009 & 80.000009 \\  \hdashline  %\hline
+					& \color{blue}  Gauss-Seidel & 10 & 0.000002 & 79.999999 \\  \hline
+				%      & \color{blue}  SD &  & \\ \hline \hline
+	\multirow{3}{*}{}  {n=200}      & \color{blue} Jacobi  & 313 & 0.000010 & 200.000010 \\  \hdashline  % \hline
+					& \color{blue}  Gauss-Seidel & 11 & 0.000003 & 200.000001 \\  \hline
+	\multirow{3}{*}{}  {n=500}      & \color{blue} Jacobi  & 迭代失败 &  &  \\  \hdashline  % \hline
+					& \color{blue}  Gauss-Seidel & 12 & 0.000003 & 500.000000 \\  \hline
+				%      & \color{blue}  SD &  & \\ \hline \hline
+	\multirow{3}{*}{} {n=2000}      & \color{blue} Jacobi  & 迭代失败 &  &  \\  \hdashline  %\hline
+					& \color{blue}  Gauss-Seidel & 13 & 0.000006 & 1999.999999 \\  \hline
+				 %       & \color{blue}  SD &  & \\ \hline %\hline
+	\multirow{3}{*}{} {n=6000}      & \color{blue} Jacobi  & 迭代失败 &  &  \\ \hdashline %    \hline
+					& \color{blue}  Gauss-Seidel & 14 & 0.000006 & 6000.000000 \\  \hline
+%
+%
+%    &\bf误差 ($\color{blue}\|x_{num} - x\|_1$)\\
+%\hline
+% LU数值解          &  &  \\
+%\hline
+% Cholesky数值解   & & \\
+%\hline
+\end{tabular}
+\end{center}
+\caption{数值结果}
+\end{table}
+
+%\begin{itemize}
+%  \item {\bf LU~三角分解结果}
+%\end{itemize}
+%
+%\item {\color{blue}n=6}:
+%$
+%L=
+%\left[\begin{array}{cccccc}
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%\end{array}\right]
+%\qquad
+%U=
+%\left[\begin{array}{cccccc}
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%a & b & a & a & a & a  \\
+%\end{array}\right]
+%$
+%
+%\item {\color{blue}n=10}:
+%$
+%L=
+%\left[\begin{array}{cccccccccc}
+%a & b & a & a & a & a & a & a & a & a  \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a  \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%\end{array}\right]
+%\qquad
+%U=
+%\left[\begin{array}{cccccccccc}
+%a & b & a & a & a & a & a & a & a & a  \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a  \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%a & b & a & a & a & a & a & a & a & a \\
+%\end{array}\right]
+%$
+
+\section{算法分析}
+%从表1中，不难观察到
+根据题意，分别实现了 Jacobi 迭代法和 Gauss-Seidel 迭代法。由表 1 可见，Gauss-Seidel 法在所有测试的 $n$ 下均能快速收敛，而 Jacobi 法在 $n \geq 500$ 时因超出最大迭代步数而失败。在两者均收敛时（如 $n=200$），Gauss-Seidel 法仅需 $11$ 步，远少于 Jacobi 法的 $313$ 步，收敛速度更快。主要原因有：1. Gauss-Seidel 法每步利用了最新的变量值，信息利用更充分；2. 本题系数矩阵 $A = H + 2I$，其中 $H$ 为希尔伯特矩阵，属于典型病态矩阵，条件数随 $n$ 增大急剧恶化，导致 Jacobi 法收敛极慢，难以在 $50$ 万步内满足精度要求。而 $A$ 始终对称正定，满足 Gauss-Seidel 法的收敛条件，因此即使在高阶情况下也能稳定收敛。此外，从表中可以看出，在相同精度下，Gauss-Seidel 法的数值解误差通常略小于 Jacobi 法，说明其解的准确性也更优。
+
+\section{实验小结}
+%\section{算法分析及小结}
+
+{二种算法的优缺点比较}：
+\begin{itemize}
+\item  Jacobi法：实现简单，易于并行计算，但收敛速度和精度弱于 Gauss-Seidel 法，且对病态矩阵敏感，会使迭代步数爆炸性增加。
+\item  Gauss-Seidel法：收敛速度快，精度高，可以使用更少的空间进行存储，适用于大多数情况，但不易并行化。
+
+%\item Blah blah blah,
+\hfill %\break
+
+{计算过程中可能出现的问题(包括这次实验中的体会, 收获或经验教训)}：
+
+\item 迭代法的收敛性依赖于系数矩阵的性质，如对称正定性或严格对角占优性。对于病态矩阵，某些迭代法可能收敛缓慢甚至发散，因此在选择迭代方法时需考虑矩阵特性。
+\item 对于停止判据的选择，计算与真实解的误差只有在知道真实解时可用，只考虑最大迭代次数又会导致发散的情况未被及时发现，需要引入残差或者解的变化量等多重判据以确保计算资源的有效利用。
+\end{itemize}
+
+
+\end{document}
